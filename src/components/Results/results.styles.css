@@ -1,0 +1,32 @@
+.results{
+    overflow-y: auto;
+    width: 95vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    height: 500px;
+}
+
+.list-items{
+    list-style-type: none;
+    
+}
+
+.list-item{
+    font-size:xx-large;    
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 200, 255);
+    border-radius: 20px;
+    border: 3px solid #f1f1f1;
+  }

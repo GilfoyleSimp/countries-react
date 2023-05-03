@@ -1,0 +1,24 @@
+.nav-container {
+ background-color: #d5d4d4;
+}
+
+.nav-items {
+    padding:10px;
+    font-size: larger;
+}
+
+.nav-anchor {
+    padding: 0 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.nav-anchor.right {
+    float:right;
+}
+
+.home-logo {
+    width: 120px;
+    height: 65px;
+}
