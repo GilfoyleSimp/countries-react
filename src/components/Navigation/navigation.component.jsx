@@ -1,5 +1,4 @@
 import '../Navigation/navigation.styles.css';
-import HomeLogo from '../../assets/el-classico-logo.png';
 import { Link, Outlet } from "react-router-dom";
 import { Fragment } from 'react';
 
@@ -10,7 +9,6 @@ const Navigation = () => {
         <div className="nav-container">
             <div className="nav-items">
                 <Link className="nav-anchor" to='/'>
-                    {/* <img src={HomeLogo} className='home-logo'/> */}
                     Home
                 </Link>
 

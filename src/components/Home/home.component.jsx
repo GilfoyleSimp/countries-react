@@ -1,5 +1,4 @@
 import './home.styles.css';
-import Background from '../../assets/el-classico-wallpaper.png'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Results from '../Results/results.component';
