@@ -1,31 +1,35 @@
 import './country.styles.css';
-// import Info from '../Country info/info.component';
+import { useState } from 'react';
+import Info from '../Country info/info.component';
 
 
 const Country = (country) => {
 
-    const countryName = country.country.name.common;
-    const countryContinent = country.country.continents;
-    const countryFlag = country.country.flags.svg;
-    const countryCapital = country.country.capital;
-    const countryCurrencySymbol = country.country.currencies;
-    // const countryCurrencyName = country.country.currencies.countryCurrencySymbol.name;
-    const countryBorders = country.country.borders;
+    const countryInfo = {
+        countryName: country.country.name.common, //didnt really understand that json format, but figured it out (trial and error)
+        countryContinent: country.country.continents,
+        countryFlag: country.country.flags.svg,
+        countryCapital: country.country.capital,
+        countryCurrencySymbol: Object.values(country.country.currencies)[0].name,
+        countryBorders: country.country.borders,
+        countryLanguages: Object.values(country.country.languages), //get only values, no keys so that we get an array instead of an object
+        countryPopulation: country.country.population,
+        countryRoadSide: Object.values(country.country.car)[1]
+    }
 
-
+    const [displayInfo, setDisplayInfo] = useState(false)
 
     return (
-        <div style={{display:"flex"}}> 
+        <div className='country-info-container'> 
             <div class="card" style={{width: "18rem", height: '22rem', display:"flex"}}>
-            <img src={countryFlag} class="card-img-top" alt="..."/>
+            <img src={countryInfo.countryFlag} class="card-img-top" alt="Country's flag"/>
                 <div class="card-body">
-                    <h4 style={{textAlign:'center'}} class="card-title">{countryName}</h4>
-                    <p  class="card-text">{countryName} is a country from {countryContinent}</p>
-                    <button class="btn btn-primary">More info</button>
+                    <h4 style={{textAlign:'center'}} class="card-title">{countryInfo.countryName}</h4>
+                    <p  class="card-text">{countryInfo.countryName} is a country from {countryInfo.countryContinent}</p>
+                    <button onClick={ () => setDisplayInfo(true)} class="btn btn-primary">More info</button>
                 </div>
-                {/* {console.log(name)} */}
             </div>
-            {/* <Info/> */}
+            {displayInfo && <Info countryInfo = {countryInfo}/>}
         </div>
         
         

@@ -1,53 +1,70 @@
-// import "bootstrap"
+import { useState } from "react"
+
+const Info = ({countryInfo}) => {
+
+    const {countryName} = countryInfo
+
+    const [infoCard, setInfoCard] = useState(countryName)
+
+    const handleDisplay = (e) => {
+        const value = e.target.name
+
+        if (countryInfo[value].length > 1 && value !== 'countryRoadSide' && value!== 'countryCurrencySymbol') {
+            setInfoCard(countryInfo[value].join(", ")); //if its an array, we separate values by commas
+        }
+        else if (value == 'countryPopulation'){
+            setInfoCard(countryInfo[value].toLocaleString()); //population needs to be formatted, comma after every 3 digits
+        }
+        else {
+            setInfoCard(countryInfo[value]); //if just a single variable, just set
+        }
+    }
+
+    return (
+        <div>
+            <div style={{width: "18rem", height: '22rem'}} class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                            <button onClick={(event) => handleDisplay(event)} 
+                            class="nav-link" 
+                            name='countryCapital'>Capital</button>
+                        </li>
+                        <li class="nav-item">
+                            <button onClick={(event) => handleDisplay(event)}
+                             class="nav-link" 
+                             name='countryCurrencySymbol'>Currency</button>
+                        </li>
+                        <li class="nav-item">
+                            <button onClick={(event) => handleDisplay(event)}
+                             class="nav-link" 
+                             name='countryBorders'>Borders</button>
+                        </li>
+                        <li class="nav-item">
+                            <button onClick={(event) => handleDisplay(event)}
+                             class="nav-link" 
+                             name='countryLanguages'>Languages</button>
+                        </li>
+                        <li class="nav-item">
+                            <button onClick={(event) => handleDisplay(event)}
+                             class="nav-link" 
+                             name='countryPopulation'>Population</button>
+                        </li>
+                        <li class="nav-item">
+                            <button onClick={(event) => handleDisplay(event)}
+                             class="nav-link" 
+                             name='countryRoadSide'>Road Side</button>
+                        </li>
+                    </ul>
+                </div>
+                <div style={{overflow:'auto'}} class="card-body d-flex justify-content-center align-items-center">
+                    <h1 style={{padding:'5px'}} class="card-title">{infoCard}</h1>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 
-// const Info = () =>{
-//     const carousel = new bootstrap.Carousel('#myCarousel')
 
-//     return (
-        
-//         <div id="carouselExampleCaptions" class="carousel slide">
-//   <div class="carousel-indicators">
-//     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-//     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-//     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-//   </div>
-//   <div class="carousel-inner">
-//     <div class="carousel-item active">
-//       <img src="..." class="d-block w-100" alt="..."/>
-//       <div class="carousel-caption d-none d-md-block">
-//         <h5>First slide label</h5>
-//         <p>Some representative placeholder content for the first slide.</p>
-//       </div>
-//     </div>
-//     <div class="carousel-item">
-//       <img src="..." class="d-block w-100" alt="..."/>
-//       <div class="carousel-caption d-none d-md-block">
-//         <h5>Second slide label</h5>
-//         <p>Some representative placeholder content for the second slide.</p>
-//       </div>
-//     </div>
-//     <div class="carousel-item">
-//       <img src="..." class="d-block w-100" alt="..."/>
-//       <div class="carousel-caption d-none d-md-block">
-//         <h5>Third slide label</h5>
-//         <p>Some representative placeholder content for the third slide.</p>
-//       </div>
-//     </div>
-//   </div>
-//   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-//     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-//     <span class="visually-hidden">Previous</span>
-//   </button>
-//   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-//     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-//     <span class="visually-hidden">Next</span>
-//   </button>
-// </div>
-    
-//     )
-// }
-
-
-
-// export default Info;
+export default Info;

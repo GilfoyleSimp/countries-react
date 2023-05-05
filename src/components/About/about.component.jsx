@@ -1,10 +1,14 @@
 import './about.styles.css';
+import HeadShot from '../../assets/Portrait Picture.jpg';
 
 const About = () => {
+    const imageUrl = '../../assets/Portrait Picture.jpg'
     return (
-
+        
         <div className="about-container">
-            <h1>Created by Paballo Kekana</h1>
+            <div>
+                <h1>Created by Paballo Kekana<span><img src={HeadShot} className='portrait'/></span></h1>
+            </div>
             <div style={{ gap: "30px", display: 'flex' }}>
                 <a target='blank' href='https://github.com/GilfoyleSimp'>
                     <svg className="media-links" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">

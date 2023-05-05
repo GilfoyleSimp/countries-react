@@ -12,3 +12,10 @@
 a{
     color:black;
 }
+
+.portrait {
+    width:120px;
+    height:120px;
+    border-radius: 60px;
+    padding: 10px;
+}

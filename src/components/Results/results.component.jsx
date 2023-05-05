@@ -5,14 +5,14 @@ import React, { useEffect, useState } from 'react';
 const Results = ({ filteredCountries, setFilteredCountries, searchField }) => {
    
     useEffect(() => {
-        setSelectedCountry(null);
+        setSelectedCountry(null); //when searchfield changes, country component is not displayed anymore
     }, [searchField]);
 
     const [selectedCountry, setSelectedCountry] = useState(null);
 
     const handleSelectCountry = (country) => {
         setSelectedCountry(country);
-        setFilteredCountries([]);
+        setFilteredCountries([]); //when country is selected, set filtered to null, thus clearing the mapped out countries
     };
 
     return (
@@ -21,7 +21,7 @@ const Results = ({ filteredCountries, setFilteredCountries, searchField }) => {
                 const { name } = country;
                 return (
                     
-                    <ul className='list-items' key={name.common}>
+                    <ul className='list-items' key={name.common}> {/* couldnt find a key(id) , but this works */}
                         <li className='list-item'>{name.common}</li>
                         <button className='btn btn-outline-info'
                             onClick={() => {

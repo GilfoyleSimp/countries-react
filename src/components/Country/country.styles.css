@@ -1,11 +1,17 @@
-.country-container{
+.country-info-container{
     margin: 20px;
-    border: solid 2px;
     display: flex;
     align-items: center;
     gap: 10px;
-    justify-content: center;
+    justify-content: space-around;
 }
+
+@media (max-width: 447px) {
+    .country-info-container {
+      display: flex!important;
+      flex-direction: column!important;
+    }
+  }
 
 .country-flag{
     width: 50px;

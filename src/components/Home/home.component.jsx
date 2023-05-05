@@ -5,7 +5,6 @@ import Results from '../Results/results.component';
 
 const Home = () => {
 
-    // https://restcountries.com/v3.1/all?fields=name,flags`
     const [countries, setCountries] = useState([])
     const [filteredCountries, setFilteredCountries] = useState(countries)
     const [searchField, setSearchField] = useState('')
