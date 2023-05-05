@@ -8,6 +8,10 @@ const Info = ({countryInfo}) => {
 
     const handleDisplay = (e) => {
         const value = e.target.name
+        if (countryInfo[value] == null){
+            setInfoCard("No Info")
+            return
+        }
 
         if (countryInfo[value].length > 1 && value !== 'countryRoadSide' && value!== 'countryCurrencySymbol') {
             setInfoCard(countryInfo[value].join(", ")); //if its an array, we separate values by commas
@@ -15,6 +19,7 @@ const Info = ({countryInfo}) => {
         else if (value == 'countryPopulation'){
             setInfoCard(countryInfo[value].toLocaleString()); //population needs to be formatted, comma after every 3 digits
         }
+        
         else {
             setInfoCard(countryInfo[value]); //if just a single variable, just set
         }
