@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { CountriesContext } from "../../contexts/coutries.context"
 
 const Info = ({countryInfo}) => {
 
     const {countryName} = countryInfo
+    const {countries} = useContext(CountriesContext)
 
     const [infoCard, setInfoCard] = useState(countryName)
 
@@ -13,11 +15,22 @@ const Info = ({countryInfo}) => {
             return
         }
 
-        if (countryInfo[value].length > 1 && value !== 'countryRoadSide' && value!== 'countryCurrencySymbol') {
+        if (countryInfo[value].length > 1 && value !== 'countryRoadSide' && value!== 'countryCurrencySymbol' && value!== 'countryBorders') {
             setInfoCard(countryInfo[value].join(", ")); //if its an array, we separate values by commas
         }
         else if (value == 'countryPopulation'){
             setInfoCard(countryInfo[value].toLocaleString()); //population needs to be formatted, comma after every 3 digits
+        }
+        else if (value == 'countryBorders'){
+            const fullNameBorders = []
+            countryInfo[value].map((border)=>{
+                countries.map((country) => {
+                    if (border === country.cca3){ //did this with no assistance, BIG BRAAAIIIN!!!
+                        fullNameBorders.push(country.name.common)
+                    }
+                })
+            })
+            setInfoCard(fullNameBorders.join(", "))
         }
         
         else {

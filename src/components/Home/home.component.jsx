@@ -2,32 +2,15 @@ import './home.styles.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Results from '../Results/results.component';
+import { useContext } from 'react';
+import { CountriesContext } from '../../contexts/coutries.context';
 
 const Home = () => {
 
-    const [countries, setCountries] = useState([])
+    const {countries} = useContext(CountriesContext); 
     const [filteredCountries, setFilteredCountries] = useState(countries)
     const [searchField, setSearchField] = useState('')
 
-    useEffect(() => {
-
-        // fetch({url}).then((response) => response.json())
-        // .then((users) => setCountries(users))
-
-        const fetchData = async () => {
-
-            await axios.get('https://restcountries.com/v3.1/all')
-                .then((response) => {
-                    setCountries(response.data)
-
-                }).catch((error) => {
-                    console.log(error)
-                })
-        }
-
-        fetchData();
-    }
-        , [])
 
     useEffect(() => {
         const newFilteredCountries = countries.filter((country) => {
@@ -59,7 +42,7 @@ const Home = () => {
                     onChange={onSearchChange} />
             </form>
 
-            <Results filteredCountries={filteredCountries} searchField={searchField} setFilteredCountries={setFilteredCountries} />
+            <Results filteredCountries={filteredCountries.sort((a, b) => a - b)} searchField={searchField} setFilteredCountries={setFilteredCountries} />
 
         </div>
     );

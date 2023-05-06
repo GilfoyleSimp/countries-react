@@ -17,7 +17,7 @@ const Results = ({ filteredCountries, setFilteredCountries, searchField }) => {
 
     return (
         <div className='results'>
-            {filteredCountries.map(country => {
+            {filteredCountries.sort((a, b) => a - b).map(country => {
                 const { name } = country;
                 return (
                     

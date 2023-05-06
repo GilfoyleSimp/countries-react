@@ -1,5 +1,5 @@
 import './country.styles.css';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Info from '../Country info/info.component';
 
 
@@ -17,7 +17,15 @@ const Country = (country) => {
         countryRoadSide: Object.values(country.country.car)[1]
     }
 
+    const infoRef = useRef(null)
     const [displayInfo, setDisplayInfo] = useState(false)
+
+    const handleMoreInfoClick = () => {
+        setDisplayInfo(true);
+        setTimeout(() => {
+            infoRef.current.scrollIntoView({ behavior: "smooth" });
+        }, 100); // okay real manual messy coding here, but basically on the first click, the Info componet is not fully rendered yet, so it doesnt scroll, so we wait 1sec, then scroll.
+    }
 
     return (
         <div className='country-info-container'> 
@@ -26,10 +34,12 @@ const Country = (country) => {
                 <div class="card-body">
                     <h4 style={{textAlign:'center'}} class="card-title">{countryInfo.countryName}</h4>
                     <p  class="card-text">{countryInfo.countryName} is a country from {countryInfo.countryContinent}</p>
-                    <button onClick={ () => setDisplayInfo(true)} class="btn btn-primary">More info</button>
+                    <button onClick={ handleMoreInfoClick} class="btn btn-primary">More info</button>
                 </div>
             </div>
-            {displayInfo && <Info countryInfo = {countryInfo}/>}
+            <div ref={infoRef}>
+                {displayInfo && <Info countryInfo = {countryInfo}/>}
+            </div>
         </div>
         
         
